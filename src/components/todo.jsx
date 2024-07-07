@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import "../App.css"
 import { CiSquareRemove } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
+import { CiCircleCheck } from "react-icons/ci";
 
 function  Todo({todo,onRemoveTodo}) {
     const {id,content} = todo;
 
+    const[editable,setEditable] = useState(false);
     const removeTodo = () => {
         onRemoveTodo(id);
     }
@@ -22,14 +24,30 @@ function  Todo({todo,onRemoveTodo}) {
                 marginTop:"10px"
             }}>
             <div>
-                {content}
+                {
+                    editable ? 
+                    <input 
+                    className="todo-input"  
+                    type="text"/>
+                    :
+                    content
+                }
             </div>
             <div>
                 <CiSquareRemove 
                 className="todo-icons" 
                 onClick={removeTodo}
                 />
-                <CiEdit className="todo-icons" />
+                {
+                    editable ? 
+                    <CiCircleCheck className="todo-icons" /> 
+                    : 
+                    <CiEdit className="todo-icons" 
+                    onClick={() => setEditable(true)} />  
+                }
+                
+                
+
             </div>
         </div>
     )
