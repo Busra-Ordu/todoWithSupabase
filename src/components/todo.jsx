@@ -8,6 +8,8 @@ function  Todo({todo,onRemoveTodo}) {
     const {id,content} = todo;
 
     const[editable,setEditable] = useState(false);
+    
+
     const removeTodo = () => {
         onRemoveTodo(id);
     }
