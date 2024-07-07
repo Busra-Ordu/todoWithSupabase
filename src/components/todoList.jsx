@@ -3,7 +3,7 @@ import "../App.css"
 import Todo from "./todo"
 
 
-function  TodoList({todos}) {
+function  TodoList({todos,onRemoveTodo}) {
     return(
         <div style={{
             width:"100%",
@@ -13,7 +13,10 @@ function  TodoList({todos}) {
         }}>
             {
                 todos && todos.map((todo)=> (
-                    <Todo todo={todo}/>
+                    <Todo 
+                    key={todo.id} todo={todo}
+                    onRemoveTodo={onRemoveTodo}
+                    />
                 ))
             }
         </div>
